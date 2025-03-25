@@ -85,6 +85,8 @@ void AMP_ARENACharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputC
 
 		// Looking
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AMP_ARENACharacter::Look);
+		// UsedPrimaryAction
+		EnhancedInputComponent->BindAction(PrimaryAction, ETriggerEvent::Triggered, this, &AMP_ARENACharacter::UsePrimaryAction);
 	}
 	else
 	{
@@ -126,4 +128,13 @@ void AMP_ARENACharacter::Look(const FInputActionValue& Value)
 		AddControllerYawInput(LookAxisVector.X);
 		AddControllerPitchInput(LookAxisVector.Y);
 	}
+}
+
+void AMP_ARENACharacter::UsePrimaryAction()
+{
+	FVector HandLocation = GetMesh()->GetSocketLocation("Muzzle_1");
+	FTransform SpawnTM = FTransform( GetActorRotation(),HandLocation, FVector(1, 1, 1));
+	FActorSpawnParameters SpawnParams;
+	SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+	GetWorld()->SpawnActor<AActor>(ProjClass,SpawnTM, SpawnParams);
 }
