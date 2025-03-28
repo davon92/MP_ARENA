@@ -55,9 +55,21 @@ This project serves as a portfolio piece to showcase my readiness for Senior Gam
 
 ## 📚 Devlogs / Docs
 
-> Coming Soon — this section will contain breakdowns of gameplay systems, architecture decisions, and technical lessons learned.
+Starting with a first assessment of the system my goal is to work from Application Start to Application Exit Here is how i plan to structue the approach
 
----
+> ✅ = Complete | 🔄 = In Progress | 📝 = Planned
+
+| Step | Lesson | Unreal API / Pattern |
+|--------|--------|-------------|
+| 📝 App Launch |	Understand what runs first (GameInstance, Subsystems)	| UGameInstance, UGameInstanceSubsystem |
+| 📝 Subsystem Boot |	Create a UMasterMessageSubsystem or UGameEventSubsystem as your core message hub	| UGameInstanceSubsystem |
+| 📝 Main Menu Entry (Optional) |	Load a title screen, or jump straight into the DevMap	| UUserWidget, Level Blueprint |
+| 📝 First Map Load |	Use GameMode + GameState + PlayerController as system roots	| AGameModeBase, AGameStateBase, APlayerController |
+| 📝 Core Services Online |	Boot input handling, grid manager, bomb manager, debug tool manager	| Custom Subsystems, Managers |
+| 📝 Player Pawn Spawned |	Set up enhanced input, character components, ability slots | ACharacter, UEnhancedInputComponent |
+| 📝 Gameplay Loop | Run the match — spawn bombs, power-ups, kill AI, etc.	| Custom gameplay logic |
+| 📝 Win/Loss Conditions |	Implement game end state, messaging, UI popups |	AGameState, OnMatchEnd() |
+| 📝 Return to Menu / Exit	| Cleanup, destroy subsystems, prepare for exit	| ShutdownModule, Deinitialize() |
 
 ## 🧑‍💻 About the Developer
 
