@@ -15,22 +15,19 @@ UCLASS()
 class MP_ARENA_API ABlasterPlayerController : public APlayerController
 {
 	GENERATED_BODY()
-/** MappingContext */
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
-	UInputMappingContext* InputMapping;
-
-	/** Move Input Action */
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
-	UInputAction* MoveAction;
-
-	/** Look Input Action */
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
-	UInputAction* LookAction;
+	
 
 public:
 	// Sets default values for this character's properties
 	ABlasterPlayerController();
 protected:
+	// Input Mapping to apply to this player's input subsystem
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Input")
+	UInputMappingContext* DefaultMappingContext;
+
+	// Priority value for applying the context (lower = higher priority)
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Input")
+	int32 MappingPriority = 0;
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 };

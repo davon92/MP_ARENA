@@ -3,6 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "InputAction.h"
+#include "InputActionValue.h"
 #include "GameFramework/Character.h"
 #include "BlasterPlayerCharacter.generated.h"
 
@@ -22,6 +24,14 @@ class MP_ARENA_API ABlasterPlayerCharacter : public ACharacter
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	UCameraComponent* FollowCamera;
 
+	/** Move Input Action */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	UInputAction* MoveAction;
+
+	/** Look Input Action */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	UInputAction* LookAction;
+
 public:
 	// Sets default values for this character's properties
 	ABlasterPlayerCharacter();
@@ -34,6 +44,8 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	void Move(const FInputActionValue& InputActionValue);
+	void Look(const FInputActionValue& Value);
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 };

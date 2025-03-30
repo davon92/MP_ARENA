@@ -3,6 +3,7 @@
 
 #include "BlasterPlayerCharacter.h"
 
+#include "EnhancedInputComponent.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 
@@ -41,5 +42,37 @@ void ABlasterPlayerCharacter::Tick(float DeltaTime)
 void ABlasterPlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
+	if (UEnhancedInputComponent* EnhancedInput = Cast<UEnhancedInputComponent>(PlayerInputComponent))
+	{
+		EnhancedInput->BindAction(MoveAction, ETriggerEvent::Triggered, this, &ABlasterPlayerCharacter::Move);
+	}
+}
+
+void ABlasterPlayerCharacter::Move(const FInputActionValue& Value)
+{
+	const FVector2D InputVector = Value.Get<FVector2D>();
+	if (Controller && InputVector.SizeSquared() > 0.f)
+	{
+		const FRotator YawRotation(0, Controller->GetControlRotation().Yaw, 0);
+
+		const FVector Forward = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
+		const FVector Right = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
+
+		AddMovementInput(Forward, InputVector.Y);
+		AddMovementInput(Right, InputVector.X);
+	}
+}
+
+void ABlasterPlayerCharacter::Look(const FInputActionValue& Value)
+{
+	// input is a Vector2D
+	FVector2D LookAxisVector = Value.Get<FVector2D>();
+
+	if (Controller != nullptr)
+	{
+		// add yaw and pitch input to controller
+		AddControllerYawInput(LookAxisVector.X);
+		AddControllerPitchInput(LookAxisVector.Y);
+	}
 }
 

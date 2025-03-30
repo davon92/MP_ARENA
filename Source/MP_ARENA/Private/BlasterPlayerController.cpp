@@ -11,13 +11,16 @@ ABlasterPlayerController::ABlasterPlayerController()
 void ABlasterPlayerController::BeginPlay()
 {
     Super::BeginPlay();
-
-    if (APlayerController* PC = Cast<APlayerController>(this))
+    
+    if (ULocalPlayer* LocalPlayer = GetLocalPlayer())
     {
-        if (UEnhancedInputLocalPlayerSubsystem* Subsystem = 
-            ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PC->GetLocalPlayer()))
+        if (UEnhancedInputLocalPlayerSubsystem* InputSubsystem =
+            LocalPlayer->GetSubsystem<UEnhancedInputLocalPlayerSubsystem>())
         {
-            Subsystem->AddMappingContext(InputMapping, 0);
+            if (DefaultMappingContext)
+            {
+                InputSubsystem->AddMappingContext(DefaultMappingContext, MappingPriority);
+            }
         }
     }
 }
