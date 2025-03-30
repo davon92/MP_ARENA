@@ -4,10 +4,10 @@
 #include "BlasterPlayerCharacter.h"
 
 #include "EnhancedInputComponent.h"
+#include "GameEventSubsystem.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/SpringArmComponent.h"
-
 
 // Sets default values
 ABlasterPlayerCharacter::ABlasterPlayerCharacter()
@@ -85,6 +85,7 @@ void ABlasterPlayerCharacter::PlaceBomb(const FInputActionValue& Value)
 {
 	if (Controller != nullptr)
 	{
+		UE_LOG(LogTemp, Warning, TEXT("PlaceBomb Triggered"));
 	}
 }
 

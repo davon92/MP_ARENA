@@ -30,4 +30,14 @@ protected:
 	int32 MappingPriority = 0;
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+
+	UFUNCTION(Exec)
+	void ToggleAllCheats();
+	void SetupInputComponent();
+
+	UPROPERTY(EditDefaultsOnly, Category="DevTools|Input")
+	UInputAction* ToggleGodModeAction;
+
+	UPROPERTY(EditDefaultsOnly, Category="DevTools|Input")
+	UInputAction* ToggleGridDebugAction;
 };
