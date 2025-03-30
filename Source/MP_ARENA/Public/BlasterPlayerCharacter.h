@@ -32,6 +32,10 @@ class MP_ARENA_API ABlasterPlayerCharacter : public ACharacter
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	UInputAction* LookAction;
 
+	/** Place Bomb Input Action */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	UInputAction* PlaceBombAction;
+
 public:
 	// Sets default values for this character's properties
 	ABlasterPlayerCharacter();
@@ -44,8 +48,9 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	void Move(const FInputActionValue& InputActionValue);
+	void Move(const FInputActionValue& Value);
 	void Look(const FInputActionValue& Value);
+	void PlaceBomb(const FInputActionValue& Value);
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 };
