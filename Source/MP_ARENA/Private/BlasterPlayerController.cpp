@@ -3,6 +3,7 @@
 #include "BlasterPlayerController.h"
 
 #include "DevToolsSubsystem.h"
+#include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "InputMappingContext.h"
 ABlasterPlayerController::ABlasterPlayerController()
@@ -51,5 +52,21 @@ void ABlasterPlayerController::SetupInputComponent()
         {
             EnhancedInput->BindAction(ToggleGridDebugAction, ETriggerEvent::Triggered, this, &ABlasterPlayerController::HandleToggleGridDebug);
         }
+    }
+}
+
+void ABlasterPlayerController::HandleToggleGodMode()
+{
+    if (UDevToolsSubsystem* Dev = UDevToolsSubsystem::Get(this))
+    {
+        Dev->ToggleGodMode();
+    }
+}
+
+void ABlasterPlayerController::HandleToggleGridDebug()
+{
+    if (UDevToolsSubsystem* Dev = UDevToolsSubsystem::Get(this))
+    {
+        Dev->ToggleGridDebug();
     }
 }

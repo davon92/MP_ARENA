@@ -34,6 +34,8 @@ protected:
 	UFUNCTION(Exec)
 	void ToggleAllCheats();
 	void SetupInputComponent();
+	void HandleToggleGodMode();
+	void HandleToggleGridDebug();
 
 	UPROPERTY(EditDefaultsOnly, Category="DevTools|Input")
 	UInputAction* ToggleGodModeAction;
