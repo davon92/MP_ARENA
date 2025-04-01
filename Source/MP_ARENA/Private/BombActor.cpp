@@ -1,10 +1,9 @@
 ﻿// Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "BombActor.h"
 
 #include "BombComponent.h"
-
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 ABombActor::ABombActor()
@@ -33,6 +32,10 @@ void ABombActor::InitBombAt(FIntPoint TileCoord)
 void ABombActor::BeginPlay()
 {
 	Super::BeginPlay();
+	if (BombDropSound)
+	{
+		UGameplayStatics::PlaySoundAtLocation(this, BombDropSound, GetActorLocation());
+	}
 }
 
 // Called every frame

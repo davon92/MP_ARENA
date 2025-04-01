@@ -24,6 +24,15 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	class UBombComponent* BombComponent;
 
+	UPROPERTY(EditDefaultsOnly, Category="Effects")
+	USoundBase* BombDropSound;
+
+	UPROPERTY(EditDefaultsOnly, Category="Effects")
+	USoundBase* ExplosionSound;
+
+	UPROPERTY(EditDefaultsOnly, Category="Effects")
+	TSubclassOf<AActor> ExplosionVFX;
+
 	/** Initializes bomb logic (tile location, delay, etc.) */
 	void InitBombAt(FIntPoint TileCoord);
 

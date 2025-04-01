@@ -3,8 +3,10 @@
 
 #include "BombComponent.h"
 
+#include "BombActor.h"
 #include "DestructibleTile.h"
 #include "GridManagerSubsystem.h"
+#include "Kismet/GameplayStatics.h"
 
 
 // Sets default values for this component's properties
@@ -49,7 +51,22 @@ void UBombComponent::TriggerExplosion()
 
 	if (AActor* Owner = GetOwner())
 	{
-		Owner->Destroy(); // Clean up bomb mesh after exploding
+		if (ABombActor* Bomb = Cast<ABombActor>(Owner))
+		{
+			if (Bomb->ExplosionSound)
+			{
+				UGameplayStatics::PlaySoundAtLocation(Bomb, Bomb->ExplosionSound, Bomb->GetActorLocation());
+			}
+
+			if (Bomb->ExplosionVFX)
+			{
+				GetWorld()->SpawnActor<AActor>(Bomb->ExplosionVFX,
+					Bomb->GetActorLocation(),
+					FRotator::ZeroRotator);
+			}
+		}
+
+		Owner->Destroy();
 	}
 }
 
