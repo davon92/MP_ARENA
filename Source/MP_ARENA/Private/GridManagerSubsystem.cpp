@@ -78,6 +78,17 @@ FIntPoint UGridManagerSubsystem::GetTileIndexFromWorld(const FVector& WorldLocat
 	return FIntPoint(X, Y);
 }
 
+FVector UGridManagerSubsystem::GetTileWorldLocation(const FIntPoint& Coord) const
+{
+	if (const FGridTileData* Tile = GridMap.Find(Coord))
+	{
+		return Tile->WorldLocation;
+	}
+
+	// Fallback: calculate manually if needed
+	return GridOrigin + FVector(Coord.X * GridTileSize, Coord.Y * GridTileSize, 0.f);
+}
+
 const FGridTileData* UGridManagerSubsystem::GetTileData(FIntPoint TileCoord) const
 {
 	return GridMap.Find(TileCoord);

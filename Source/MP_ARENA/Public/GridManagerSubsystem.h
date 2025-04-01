@@ -55,6 +55,9 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "Grid")
 	TSubclassOf<class ADestructibleTile> DestructibleTileClass;
 
+	UFUNCTION(BlueprintCallable, Category="Grid")
+	FVector GetTileWorldLocation(const FIntPoint& Coord) const;
+
 protected:
 	TMap<FIntPoint, FGridTileData> GridMap;
 
