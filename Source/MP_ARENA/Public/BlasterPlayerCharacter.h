@@ -36,6 +36,9 @@ class MP_ARENA_API ABlasterPlayerCharacter : public ACharacter
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	UInputAction* PlaceBombAction;
 
+	UPROPERTY(EditDefaultsOnly, Category = "Bombs")
+	TSubclassOf<class ABombActor> BombActorClass;
+
 public:
 	// Sets default values for this character's properties
 	ABlasterPlayerCharacter();
@@ -53,4 +56,5 @@ public:
 	void PlaceBomb(const FInputActionValue& Value);
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	
 };

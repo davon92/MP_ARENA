@@ -36,10 +36,14 @@ protected:
 	void SetupInputComponent();
 	void HandleToggleGodMode();
 	void HandleToggleGridDebug();
+	void HandleToggleTileIndicesDebug();
 
 	UPROPERTY(EditDefaultsOnly, Category="DevTools|Input")
 	UInputAction* ToggleGodModeAction;
 
 	UPROPERTY(EditDefaultsOnly, Category="DevTools|Input")
 	UInputAction* ToggleGridDebugAction;
+	
+	UPROPERTY(EditDefaultsOnly, Category="DevTools|Input")
+	UInputAction* ToggleTileIndicesDebugAction;
 };

@@ -25,9 +25,15 @@ void UDevOverlayWidget::NativeTick(const FGeometry& MyGeometry, float InDeltaTim
 			Text_GodMode->SetText(FText::FromString(FString::Printf(TEXT("God Mode: %s"), *GodModeStatus)));
 		}
 
+		if (DevTools->bShowGridOverlay)
+		{
+			DevTools->DrawGridDebug(GetWorld());
+		}
+
 		if (Text_GridDebug)
 		{
 			const FString GridStatus = DevTools->bShowGridOverlay ? TEXT("ON") : TEXT("OFF");
+			
 			Text_GridDebug->SetText(FText::FromString(FString::Printf(TEXT("Grid Debug: %s"), *GridStatus)));
 		}
 

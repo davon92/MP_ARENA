@@ -3,6 +3,8 @@
 #include "MP_ARENAGameMode.h"
 #include "MP_ARENACharacter.h"
 #include "CollectibleActor.h"
+#include "DestructibleTile.h"
+#include "GridManagerSubsystem.h"
 #include "Kismet/GameplayStatics.h"
 #include "UObject/ConstructorHelpers.h"
 
@@ -30,10 +32,21 @@ void AMP_ARENAGameMode::StartPlay()
 			Collectible->OnPlatformTriggered.AddDynamic(this,&AMP_ARENAGameMode::ScorePoint);;
 		}
 	}
+
+	UGridManagerSubsystem* Grid = UGridManagerSubsystem::Get(this);
+	if (Grid && DestructibleTileClass)
+	{
+		Grid->DestructibleTileClass = DestructibleTileClass;
+	}
 }
 
 void AMP_ARENAGameMode::ScorePoint()
 {
 	Score++;
 	UE_LOG(LogTemp, Warning, TEXT("Player Has Scored A Point"));
+}
+
+UGridManagerSubsystem* AMP_ARENAGameMode::GetGridManager() const
+{
+	return UGridManagerSubsystem::Get(GetWorld());
 }

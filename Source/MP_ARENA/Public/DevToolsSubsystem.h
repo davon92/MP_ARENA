@@ -22,12 +22,22 @@ public:
 
 	UFUNCTION(Exec)
 	void ToggleAllCheats();
+	
+
+	UFUNCTION(BlueprintCallable, Category = "DevTools")
+	void ToggleTileIndices();
+
+	UFUNCTION(Exec)
+	void DrawGridDebug(const UWorld* World);
 
 	UPROPERTY(BlueprintReadOnly, Category = "DevTools")
 	bool bShowGridOverlay = false;
 
 	UPROPERTY(BlueprintReadOnly, Category = "DevTools")
 	bool bGodMode = false;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "DevTools")
+	bool bShowTileIndices = false;
 
 	static UDevToolsSubsystem* Get(const UObject* WorldContext);
 };

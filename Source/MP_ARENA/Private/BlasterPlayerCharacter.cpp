@@ -3,8 +3,10 @@
 
 #include "BlasterPlayerCharacter.h"
 
+#include "BombActor.h"
 #include "EnhancedInputComponent.h"
 #include "GameEventSubsystem.h"
+#include "GridManagerSubsystem.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/SpringArmComponent.h"
@@ -86,6 +88,23 @@ void ABlasterPlayerCharacter::PlaceBomb(const FInputActionValue& Value)
 	if (Controller != nullptr)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("PlaceBomb Triggered"));
+		if (UGridManagerSubsystem* Grid = UGridManagerSubsystem::Get(this))
+		{
+			if (BombActorClass)
+			{
+				FIntPoint Coord = Grid->GetTileIndexFromWorld(GetActorLocation());
+				FVector WorldPos = Grid->GetTileWorldLocation(Coord);
+
+				FActorSpawnParameters Params;
+				Params.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;
+
+				ABombActor* Bomb = GetWorld()->SpawnActor<ABombActor>(BombActorClass, WorldPos, FRotator::ZeroRotator, Params);
+				if (Bomb)
+				{
+					Bomb->InitBombAt(Coord);
+				}
+			}
+		}
 	}
 }
 

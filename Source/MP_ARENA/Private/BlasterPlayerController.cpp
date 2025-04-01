@@ -52,6 +52,12 @@ void ABlasterPlayerController::SetupInputComponent()
         {
             EnhancedInput->BindAction(ToggleGridDebugAction, ETriggerEvent::Triggered, this, &ABlasterPlayerController::HandleToggleGridDebug);
         }
+
+        // Grid Overlay Toggle
+        if (ToggleTileIndicesDebugAction)
+        {
+            EnhancedInput->BindAction(ToggleTileIndicesDebugAction, ETriggerEvent::Triggered, this, &ABlasterPlayerController::HandleToggleTileIndicesDebug);
+        }
     }
 }
 
@@ -68,5 +74,13 @@ void ABlasterPlayerController::HandleToggleGridDebug()
     if (UDevToolsSubsystem* Dev = UDevToolsSubsystem::Get(this))
     {
         Dev->ToggleGridDebug();
+    }
+}
+
+void ABlasterPlayerController::HandleToggleTileIndicesDebug()
+{
+    if (UDevToolsSubsystem* Dev = UDevToolsSubsystem::Get(this))
+    {
+        Dev->ToggleTileIndices();
     }
 }
