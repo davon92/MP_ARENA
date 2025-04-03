@@ -4,7 +4,7 @@
 #include "DestructibleTile.h"
 
 #include "GridManagerSubsystem.h"
-
+#include "PowerUpSpawnerSubsystem.h"
 
 // Sets default values
 ADestructibleTile::ADestructibleTile()
@@ -42,6 +42,10 @@ void ADestructibleTile::Explode()
 		Grid->SetTileOccupied(TileCoord, false);
 	}
 
+	if (UPowerUpSpawnerSubsystem* PowerUpSpawner = UPowerUpSpawnerSubsystem::Get(this))
+	{
+		PowerUpSpawner->MaybeSpawnPowerUpAt(GetActorLocation());
+	}
 	// Destroy self
 	Destroy();
 }
