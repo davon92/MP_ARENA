@@ -31,15 +31,15 @@ This project serves as a portfolio piece to showcase my readiness for Senior Gam
 
 | Feature | Status | Description |
 |--------|--------|-------------|
-| Subsystem Messaging Hub | 📝 | Decoupled game-wide communication system using Unreal Subsystems |
-| Modular Bomb Component | 📝 | Data-driven bomb types and modifiers |
-| Grid-Based Level System | 📝 | Destructible tiles, pathfinding grid, placement logic |
+| Subsystem Messaging Hub | ✅ | Decoupled game-wide communication system using Unreal Subsystems |
+| Modular Bomb Component | ✅ | Data-driven bomb types and modifiers |
+| Grid-Based Level System | 🔄 | Destructible tiles, pathfinding grid, placement logic |
 | Gameplay Ability System (GAS-lite) | 📝 | Lightweight system for power-ups and player upgrades |
 | AI with Behavior Trees | 📝 | Enemy agents that navigate, chase, flee, and react to the environment |
-| Input Mapping (UE5 Enhanced Input) | 📝 | Fully rebindable gamepad/keyboard controls with context switching |
+| Input Mapping (UE5 Enhanced Input) | 🔄 | Fully rebindable gamepad/keyboard controls with context switching |
 | UI Feedback System | 📝 | Kill feed, power-up notifications, and damage popups |
-| Dev Cheats & Debug Tools | 📝 | Console/debug menu for spawning, toggling systems, and stress testing |
-| Performance Profiling | 📝 | Runtime profiling using Unreal Insights and in-editor tools |
+| Dev Cheats & Debug Tools | ✅ | Console/debug menu for spawning, toggling systems, and stress testing |
+| Performance Profiling | 🔄 | Runtime profiling using Unreal Insights and in-editor tools |
 | Optional: Multiplayer Support | 📝 | Local or LAN multiplayer implementation for bonus value |
 
 ## 🚀 Getting Started
@@ -61,11 +61,11 @@ Starting with a first assessment of the system my goal is to work from Applicati
 
 | Step | Lesson | Unreal API / Pattern |
 |--------|--------|-------------|
-| 📝 App Launch |	Understand what runs first (GameInstance, Subsystems)	| UGameInstance, UGameInstanceSubsystem |
-| 📝 Subsystem Boot |	Create a UMasterMessageSubsystem or UGameEventSubsystem as your core message hub	| UGameInstanceSubsystem |
+| ✅ App Launch |	Understand what runs first (GameInstance, Subsystems)	| UGameInstance, UGameInstanceSubsystem |
+| ✅ Subsystem Boot |	Create a UMasterMessageSubsystem or UGameEventSubsystem as your core message hub	| UGameInstanceSubsystem |
 | 📝 Main Menu Entry (Optional) |	Load a title screen, or jump straight into the DevMap	| UUserWidget, Level Blueprint |
 | 📝 First Map Load |	Use GameMode + GameState + PlayerController as system roots	| AGameModeBase, AGameStateBase, APlayerController |
-| 📝 Core Services Online |	Boot input handling, grid manager, bomb manager, debug tool manager	| Custom Subsystems, Managers |
+| ✅ Core Services Online |	Boot input handling, grid manager, bomb manager, debug tool manager	| Custom Subsystems, Managers |
 | 📝 Player Pawn Spawned |	Set up enhanced input, character components, ability slots | ACharacter, UEnhancedInputComponent |
 | 📝 Gameplay Loop | Run the match — spawn bombs, power-ups, kill AI, etc.	| Custom gameplay logic |
 | 📝 Win/Loss Conditions |	Implement game end state, messaging, UI popups |	AGameState, OnMatchEnd() |
