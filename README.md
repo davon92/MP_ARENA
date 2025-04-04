@@ -66,7 +66,7 @@ Starting with a first assessment of the system my goal is to work from Applicati
 | 📝 Main Menu Entry (Optional) |	Load a title screen, or jump straight into the DevMap	| UUserWidget, Level Blueprint |
 | 📝 First Map Load |	Use GameMode + GameState + PlayerController as system roots	| AGameModeBase, AGameStateBase, APlayerController |
 | ✅ Core Services Online |	Boot input handling, grid manager, bomb manager, debug tool manager	| Custom Subsystems, Managers |
-| 📝 Player Pawn Spawned |	Set up enhanced input, character components, ability slots | ACharacter, UEnhancedInputComponent |
+| ✅ Player Pawn Spawned |	Set up enhanced input, character components, ability slots | ACharacter, UEnhancedInputComponent |
 | 📝 Gameplay Loop | Run the match — spawn bombs, power-ups, kill AI, etc.	| Custom gameplay logic |
 | 📝 Win/Loss Conditions |	Implement game end state, messaging, UI popups |	AGameState, OnMatchEnd() |
 | 📝 Return to Menu / Exit	| Cleanup, destroy subsystems, prepare for exit	| ShutdownModule, Deinitialize() |
