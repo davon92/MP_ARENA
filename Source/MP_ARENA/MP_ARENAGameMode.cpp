@@ -5,6 +5,7 @@
 #include "CollectibleActor.h"
 #include "DestructibleTile.h"
 #include "GridManagerSubsystem.h"
+#include "PowerUpSpawnerSubsystem.h"
 #include "Kismet/GameplayStatics.h"
 #include "UObject/ConstructorHelpers.h"
 
@@ -12,7 +13,7 @@ AMP_ARENAGameMode::AMP_ARENAGameMode()
 {
 	// set default pawn class to our Blueprinted character
 	static ConstructorHelpers::FClassFinder<APawn> PlayerPawnBPClass(TEXT("/Game/ThirdPerson/Blueprints/BP_ThirdPersonCharacter"));
-	if (PlayerPawnBPClass.Class != NULL)
+	if (PlayerPawnBPClass.Class != nullptr)
 	{
 		DefaultPawnClass = PlayerPawnBPClass.Class;
 	}
@@ -37,6 +38,12 @@ void AMP_ARENAGameMode::StartPlay()
 	if (Grid && DestructibleTileClass)
 	{
 		Grid->DestructibleTileClass = DestructibleTileClass;
+	}
+
+	UPowerUpSpawnerSubsystem* PowerUpSpawnerSystem = UPowerUpSpawnerSubsystem::Get(this);
+	if (PowerUpSpawnerSystem && PowerUpDataTable)
+	{
+		PowerUpSpawnerSystem->PowerUpTable = PowerUpDataTable;
 	}
 }
 

@@ -39,6 +39,8 @@ class MP_ARENA_API ABlasterPlayerCharacter : public ACharacter
 	UPROPERTY(EditDefaultsOnly, Category = "Bombs")
 	TSubclassOf<class ABombActor> BombActorClass;
 
+	
+
 public:
 	// Sets default values for this character's properties
 	ABlasterPlayerCharacter();
@@ -56,5 +58,20 @@ public:
 	void PlaceBomb(const FInputActionValue& Value);
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	// Gameplay Stats
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Gameplay")
+	int32 MaxBombs = 1;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Gameplay")
+	int32 BombRadius = 1;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Gameplay")
+	float BaseSpeed = 600.f;
+
+	// Setters
+	void SetMaxBombs(int32 NewMax) { MaxBombs = NewMax; }
+	void SetBombRadius(int32 NewRadius) { BombRadius = NewRadius; }
+	void SetMoveSpeed(float Speed);
 	
 };

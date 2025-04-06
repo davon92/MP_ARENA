@@ -9,12 +9,16 @@ void ABlasterHUD::BeginPlay()
 {
 	Super::BeginPlay();
 
-	if (WBP_DevOverlayClass)
+	DevOverlayWidget = CreateWidget<UDevOverlayWidget>(GetWorld(), DevOverlayClass);
+	if (DevOverlayWidget)
 	{
-		UUserWidget* DevOverlay = CreateWidget<UUserWidget>(GetWorld(), WBP_DevOverlayClass);
-		if (DevOverlay)
-		{
-			DevOverlay->AddToViewport();
-		}
+		DevOverlayWidget->AddToViewport();
+	}
+
+	PlayerStatsWidget = CreateWidget<UPlayerStatsWidget>(GetWorld(), PlayerStatsWidgetClass);
+	if (PlayerStatsWidget)
+	{
+		PlayerStatsWidget->AddToViewport();
+		PlayerStatsWidget->BindToPlayer(GetOwningPawn());
 	}
 }

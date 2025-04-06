@@ -18,12 +18,8 @@ public:
 
 	/** Called when a destructible tile is destroyed */
 	void MaybeSpawnPowerUpAt(const FVector& Location);
+	void SpawnPowerUpFromRow(FName RowID, const FVector& Location);
 
-	/** Types of power-ups to randomly choose from */
-	UPROPERTY(EditDefaultsOnly, Category = "PowerUps")
-	TArray<TSubclassOf<AActor>> PowerUpClasses;
-
-	/** Spawn chance between 0 and 1 (e.g., 0.25 = 25%) */
-	UPROPERTY(EditDefaultsOnly, Category = "PowerUps")
-	float PowerUpSpawnChance = 0.25f;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UDataTable* PowerUpTable;
 };

@@ -55,6 +55,11 @@ void ABlasterPlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerI
 	}
 }
 
+void ABlasterPlayerCharacter::SetMoveSpeed(float Speed)
+{
+	GetCharacterMovement()->MaxWalkSpeed = BaseSpeed*Speed;
+}
+
 void ABlasterPlayerCharacter::Move(const FInputActionValue& Value)
 {
 	const FVector2D InputVector = Value.Get<FVector2D>();

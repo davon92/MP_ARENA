@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "PowerUpSpawnerSubsystem.h"
 #include "GameFramework/GameModeBase.h"
 #include "MP_ARENAGameMode.generated.h"
 class ADestructibleTile;
@@ -25,6 +26,9 @@ public:
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Grid")
     TSubclassOf<ADestructibleTile> DestructibleTileClass;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "DataTables")
+	UDataTable* PowerUpDataTable;
 	
 protected:
 	int32 Score;

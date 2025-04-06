@@ -3,6 +3,8 @@
 
 #include "PowerUpBase.h"
 
+#include "GameEventSubsystem.h"
+#include "PowerUpEffectComponent.h"
 #include "Components/SphereComponent.h"
 
 
@@ -40,6 +42,16 @@ void APowerUpBase::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* O
 {
 	// Basic interaction — override in BP or subclasses
 	UE_LOG(LogTemp, Warning, TEXT("PowerUp picked up by: %s"), *OtherActor->GetName());
-	Destroy();
+	if (UPowerUpEffectComponent* EffectComp = OtherActor->FindComponentByClass<UPowerUpEffectComponent>())
+	{
+		EffectComp->ApplyEffectByRow(RowID);
+
+		if (UGameEventSubsystem* Events = UGameEventSubsystem::Get(this))
+		{
+			Events->BroadcastPowerupCollected(RowID);
+		}
+
+		Destroy();
+	}
 }
 

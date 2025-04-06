@@ -3,6 +3,8 @@
 
 #include "PowerUpSpawnerSubsystem.h"
 
+#include "FPowerUpEffectData.h"
+
 UPowerUpSpawnerSubsystem* UPowerUpSpawnerSubsystem::Get(const UObject* WorldContext)
 {
 	if (const UGameInstance* GI = WorldContext->GetWorld()->GetGameInstance())
@@ -14,11 +16,35 @@ UPowerUpSpawnerSubsystem* UPowerUpSpawnerSubsystem::Get(const UObject* WorldCont
 
 void UPowerUpSpawnerSubsystem::MaybeSpawnPowerUpAt(const FVector& Location)
 {
-	if (PowerUpClasses.Num() == 0 || FMath::FRand() > PowerUpSpawnChance)
-		return;
+	if (!PowerUpTable) return;
 
-	int32 Index = FMath::RandRange(0, PowerUpClasses.Num() - 1);
-	TSubclassOf<AActor> ChosenClass = PowerUpClasses[Index];
+	TArray<FName> RowNames = PowerUpTable->GetRowNames();
 
-	GetWorld()->SpawnActor<AActor>(ChosenClass, Location, FRotator::ZeroRotator);
+	for (const FName& RowName : RowNames)
+	{
+		const FPowerUpEffectData* Data = PowerUpTable->FindRow<FPowerUpEffectData>(RowName, TEXT("MaybeSpawnPowerUpAt"));
+		if (!Data) continue;
+
+		if (FMath::FRand() <= Data->SpawnChance)
+		{
+			SpawnPowerUpFromRow(RowName, Location);
+			break;
+		}
+	}
+}
+
+void UPowerUpSpawnerSubsystem::SpawnPowerUpFromRow(FName RowID, const FVector& Location)
+{
+	if (!PowerUpTable) return;
+
+	if (const FPowerUpEffectData* Row = PowerUpTable->FindRow<FPowerUpEffectData>(RowID, TEXT("Spawning")))
+	{
+		if (Row->PowerUpClass)
+		{
+			FActorSpawnParameters Params;
+			Params.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+
+			GetWorld()->SpawnActor<AActor>(Row->PowerUpClass, Location, FRotator::ZeroRotator, Params);
+		}
+	}
 }
