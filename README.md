@@ -73,7 +73,7 @@ Starting with a first assessment of the system my goal is to work from Applicati
 
 ## 🧑‍💻 About the Developer
 
-Hi, I’m Davon Allen, a gameplay engineer with a focus on building high-quality, scalable gameplay systems in Unreal Engine.  
+Hi, I’m Davon Allen, a gameplay engineer with a focus on building high-quality, scalable gameplay systems.  
 My goal is to join a AAA studio as a Mid - Senior Gameplay Programmer and contribute to systems that drive player creativity, fun, and depth.
 
 - [LinkedIn](https://www.linkedin.com/in/davonaallen/)
