@@ -25,7 +25,7 @@ This project serves as a portfolio piece to showcase my readiness for Senior Gam
 
 ---
 
-## 🕹️ DataStrucures (Planned & In Progress)
+## 🕹️ Features (Planned & In Progress)
 
 > ✅ = Complete | 🔄 = In Progress | 📝 = Planned
 
