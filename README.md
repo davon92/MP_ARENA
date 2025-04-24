@@ -30,8 +30,17 @@ This project serves as a portfolio piece to showcase my readiness for Senior Gam
 > ✅ = Complete | 🔄 = In Progress | 📝 = Planned
 
 | Feature | Status | Description |
-|--------|--------|-------------|
-| Stack | 🔄 | |
+ |--------|--------|-------------|
+ | Subsystem Messaging Hub | ✅ | Decoupled game-wide communication system using Unreal Subsystems |
+ | Modular Bomb Component | ✅ | Data-driven bomb types and modifiers |
+ | Grid-Based Level System | 🔄 | Destructible tiles, pathfinding grid, placement logic |
+ | Gameplay Ability System (GAS-lite) | 📝 | Lightweight system for power-ups and player upgrades |
+ | AI with Behavior Trees | 📝 | Enemy agents that navigate, chase, flee, and react to the environment |
+ | Input Mapping (UE5 Enhanced Input) | 🔄 | Fully rebindable gamepad/keyboard controls with context switching |
+ | UI Feedback System | 📝 | Kill feed, power-up notifications, and damage popups |
+ | Dev Cheats & Debug Tools | ✅ | Console/debug menu for spawning, toggling systems, and stress testing |
+ | Performance Profiling | 🔄 | Runtime profiling using Unreal Insights and in-editor tools |
+ | Optional: Multiplayer Support | 📝 | Local or LAN multiplayer implementation for bonus value |
 
 ## 🚀 Getting Started
 
